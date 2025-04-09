@@ -1,0 +1,64 @@
+body.registro-body {
+  background: linear-gradient(120deg, #c3cfe2 , #c3cfe2);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.registro-card {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 460px;
+  z-index: 10;
+}
+
+.registro-title {
+  font-weight: 600;
+  color: #1e88e5;
+  margin-bottom: 8px;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #555;
+}
+
+.form-control {
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #1e88e5;
+  box-shadow: none;
+}
+
+.btn-registro {
+  width: 100%;
+  padding: 14px;
+  background-color: #1e88e5;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-registro:hover {
+  background-color: #1565c0;
+}
+
+footer {
+  background-color: #343a40;
+  color: white;
+  padding: 20px;
+  margin-top: auto; /* Asegura que el footer se quede en el fondo */
+}
