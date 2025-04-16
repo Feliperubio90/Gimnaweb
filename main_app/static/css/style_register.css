@@ -62,3 +62,17 @@ footer {
   padding: 20px;
   margin-top: auto; /* Asegura que el footer se quede en el fondo */
 }
+
+/* Estilo para los errores del formulario */
+.error-list {
+  color: red;
+  font-size: 0.9rem;
+  list-style-type: none;
+  margin-top: 5px;
+}
+
+.error {
+  margin-bottom: 5px;
+  color: red;
+  font-weight: bold;
+}
