@@ -1,5 +1,5 @@
 from django import forms
-from .models import Cliente
+from .models import Cliente, Entrenador, Clase
 import re
 
 class ClienteForm(forms.ModelForm):
@@ -73,3 +73,26 @@ class ClienteForm(forms.ModelForm):
 class LoginForm(forms.Form):
     correo = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
     contraseña = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+
+class EntrenadorForm(forms.ModelForm):
+    class Meta:
+        model = Entrenador
+        fields = '__all__'
+        widgets = {
+            'fecha_disponible': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'hora_disponible_desde': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
+            'hora_disponible_hasta': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
+        }
+
+class ClaseForm(forms.ModelForm):
+    class Meta:
+        model = Clase
+        fields = '__all__'
+        widgets = {
+            'horario': forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'}),
+            'nombre': forms.TextInput(attrs={'class': 'form-control'}),
+            'cupos_maximos': forms.NumberInput(attrs={'class': 'form-control'}),
+            'cupos_disponibles': forms.NumberInput(attrs={'class': 'form-control'}),
+            'membresia': forms.Select(attrs={'class': 'form-control'}),
+            'entrenador': forms.Select(attrs={'class': 'form-control'}),
+        }        

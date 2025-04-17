@@ -3,7 +3,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Panel Administrativo - Clientes</title>
+    <title>Panel Administrativo - Clases</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style_admin.css' %}">
 </head>
@@ -11,16 +11,17 @@
 
 <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Panel Administrativo Cliente</a>
+        <a class="navbar-brand" href="#">Panel Administrativo Clases</a>
     </div>
 </nav>
+
 <main class="flex-grow-1">
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <!-- Formulario para Crear/Editar Cliente -->
+        <!-- Formulario Crear/Editar -->
         <div class="col-md-5">
             <div class="registro-card">
-                <h4 class="registro-title">Agregar / Editar Cliente</h4>
+                <h4 class="registro-title">Agregar / Editar Clase</h4>
                 <form method="post">
                     {% csrf_token %}
                     {{ form.as_p }}
@@ -29,41 +30,44 @@
             </div>
         </div>
 
-        <!-- Tabla con Clientes -->
+        <!-- Lista de Clases -->
         <div class="col-md-7">
             <div class="card shadow">
                 <div class="card-header bg-primary text-white">
-                    <h5 class="mb-0">Lista de Clientes</h5>
+                    <h5 class="mb-0">Lista de Clases</h5>
                 </div>
                 <div class="card-body p-0">
-                    <!-- Contenedor responsivo para la tabla -->
                     <div class="table-responsive">
-                        <table class="table table-striped mb-0">
+                        <table class="table table-striped mb-0 align-middle text-center">
                             <thead class="table-light">
                                 <tr>
                                     <th>Nombre</th>
-                                    <th>Correo</th>
-                                    <th>Teléfono</th>
+                                    <th>Horario</th>
+                                    <th>Cupos Máximos</th>
+                                    <th>Cupos Disponibles</th>
                                     <th>Membresía</th>
+                                    <th>Entrenador</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for cliente in clientes %}
+                                {% for clase in clases %}
                                 <tr>
-                                    <td>{{ cliente.nombre }}</td>
-                                    <td>{{ cliente.correo }}</td>
-                                    <td>{{ cliente.telefono }}</td>
-                                    <td>{{ cliente.membresia }}</td>
+                                    <td>{{ clase.nombre }}</td>
+                                    <td>{{ clase.horario|date:"d/m/Y H:i" }}</td>
+                                    <td>{{ clase.cupos_maximos }}</td>
+                                    <td>{{ clase.cupos_disponibles }}</td>
+                                    <td>{{ clase.membresia }}</td>
+                                    <td>{{ clase.entrenador.primer_nombre }} {{ clase.entrenador.apellido_paterno }}</td>
                                     <td>
-                                        <a href="{% url 'editar_cliente' cliente.id %}" class="btn btn-sm btn-warning">Editar</a>
-                                        <a href="{% url 'eliminar_cliente' cliente.id %}" class="btn btn-sm btn-danger"
-                                           onclick="return confirm('¿Estás seguro de eliminar este cliente?')">Eliminar</a>
+                                        <a href="{% url 'editar_clase' clase.id %}" class="btn btn-sm btn-warning">Editar</a>
+                                        <a href="{% url 'eliminar_clase' clase.id %}" class="btn btn-sm btn-danger"
+                                           onclick="return confirm('¿Estás seguro de eliminar esta clase?')">Eliminar</a>
                                     </td>
                                 </tr>
                                 {% empty %}
                                 <tr>
-                                    <td colspan="5" class="text-center">No hay clientes registrados.</td>
+                                    <td colspan="7" class="text-center">No hay clases registradas.</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -72,19 +76,14 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 </div>
 </main>
+
 <footer class="mt-5 text-center text-white bg-dark py-3">
     &copy; 2025 GimnaWeb - Panel Administrativo
 </footer>
 
 </body>
-<script>
-        const nombre = "{{ request.session.cliente_nombre|escapejs }}";
-    if (nombre) {
-        sessionStorage.setItem("cliente_nombre", nombre);
-    }
-</script>
 </html>
