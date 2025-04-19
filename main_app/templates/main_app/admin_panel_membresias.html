@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel Administrativo - Membresías</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style_admin.css' %}">
+</head>
+<body class="registro-body">
+
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Panel Administrativo Membresías</a>
+    </div>
+    <a href="{% url 'menu_admin' %}">
+        <button type="button" class="btn btn-primary">Volver al Panel de Administración</button>
+    </a>
+</nav>
+
+<main class="flex-grow-1">
+<div class="container mt-5">
+    <div class="row justify-content-center">
+
+        <!-- Lista de Membresías -->
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Lista de Membresías</h5>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-striped mb-0 align-middle text-center">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Descripción</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for membresia in membresias %}
+                                    <tr>
+                                        <td>{{ membresia.nombre }}</td>
+                                        <td>{{ membresia.descripcion }}</td>
+                                        <td>
+                                            {% if membresia.nombre == "Competidor" or membresia.nombre == "Pro Athlete" %}
+                                                <a href="?editar={{ membresia.id }}" class="btn btn-sm btn-warning">Editar Descripción</a>
+                                            {% else %}
+                                                <span class="text-muted">No editable</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+
+                                    {% if request.GET.editar|default:'' == membresia.id|stringformat:"s" %}
+                                        <tr>
+                                            <td colspan="3">
+                                                <form method="post" class="text-start p-3">
+                                                    {% csrf_token %}
+                                                    <div class="form-group">
+                                                        <label for="descripcion">Nueva descripción:</label>
+                                                        <textarea name="descripcion" class="form-control" rows="3">{{ membresia.descripcion }}</textarea>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-success mt-2">Guardar</button>
+                                                    <a href="{% url 'admin_panel_membresias' %}" class="btn btn-secondary mt-2">Cancelar</a>
+                                                    <input type="hidden" name="membresia_id" value="{{ membresia.id }}">
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    {% endif %}
+                                {% empty %}
+                                    <tr>
+                                        <td colspan="3">No hay membresías registradas.</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</main>
+
+<footer class="mt-5 text-center text-white bg-dark py-3">
+    &copy; 2025 GimnaWeb - Panel Administrativo
+</footer>
+
+</body>
+</html>
