@@ -1,0 +1,197 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario de Clases</title>
+    <link rel="stylesheet" href="{% static 'css/style_calendario.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+ <!-- Navbar -->
+ <nav class="navbar navbar-expand-lg navbar-light bg-light position-absolute top-0 start-0 end-0">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'home' %}">GimnaWeb</a>
+    </div>
+  </nav>    
+    <div class="container mt-5 pt-5 d-flex flex-column align-items-center">
+        <h1 class="text-center mb-4">Calendario Semanal de Actividades</h1>
+        <p class="text-center text-muted mb-4">Consulta las clases disponibles y organiza tu semana de entrenamiento.</p>
+    <div class="calendario-wrapper d-flex justify-content-center">    
+        
+            <table>
+                <thead>
+                    <tr>
+                        <th>Bloque</th>
+                        <th>Lunes</th>
+                        <th>Martes</th>
+                        <th>Miércoles</th>
+                        <th>Jueves</th>
+                        <th>Viernes</th>
+                        <th>Sábado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for bloque, dias in calendario.items %}
+                        <tr>
+                            <td>{{ bloque }}</td>
+                
+                            <!-- Lunes -->
+                            <td>
+                                {% if dias.lunes %}
+                                    <strong>{{ dias.lunes.nombre }}</strong><br>
+                                    Entrenador: {{ dias.lunes.entrenador.primer_nombre }} {{ dias.lunes.entrenador.apellido_paterno }}<br>
+                                    Membresía: {{ dias.lunes.membresia }}<br>
+                                    Cupos: {{ dias.lunes.cupos_disponibles }}/{{ dias.lunes.cupos_maximos }}
+                                    <form method="post" action="{% url 'agendar_clase' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="clase_id" value="{{ dias.lunes.id }}">
+                                        {% if dias.lunes.inscrito %}
+                                            <input type="hidden" name="cancelar" value="true">
+                                            <button type="submit" class="btn btn-sm btn-danger mt-2">Cancelar</button>
+                                        {% else %}
+                                            <button type="submit" class="btn btn-sm btn-primary mt-2">Agendar</button>
+                                        {% endif %}
+                                    </form>
+                                {% else %}
+                                    Libre
+                                {% endif %}
+                            </td>
+                
+                            <!-- Martes -->
+                            <td>
+                                {% if dias.martes %}
+                                    <strong>{{ dias.martes.nombre }}</strong><br>
+                                    Entrenador: {{ dias.martes.entrenador.primer_nombre }} {{ dias.martes.entrenador.apellido_paterno }}<br>
+                                    Membresía: {{ dias.martes.membresia }}<br>
+                                    Cupos: {{ dias.martes.cupos_disponibles }}/{{ dias.martes.cupos_maximos }}
+                                    <form method="post" action="{% url 'agendar_clase' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="clase_id" value="{{ dias.martes.id }}">
+                                        {% if dias.martes.inscrito %}
+                                            <input type="hidden" name="cancelar" value="true">
+                                            <button type="submit" class="btn btn-sm btn-danger mt-2">Cancelar</button>
+                                        {% else %}
+                                            <button type="submit" class="btn btn-sm btn-primary mt-2">Agendar</button>
+                                        {% endif %}
+                                    </form>
+                                {% else %}
+                                    Libre
+                                {% endif %}
+                            </td>
+                
+                            <!-- Miércoles -->
+                            <td>
+                                {% if dias.miércoles %}
+                                    <strong>{{ dias.miércoles.nombre }}</strong><br>
+                                    Entrenador: {{ dias.miércoles.entrenador.primer_nombre }} {{ dias.miércoles.entrenador.apellido_paterno }}<br>
+                                    Membresía: {{ dias.miércoles.membresia }}<br>
+                                    Cupos: {{ dias.miércoles.cupos_disponibles }}/{{ dias.miércoles.cupos_maximos }}
+                                    <form method="post" action="{% url 'agendar_clase' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="clase_id" value="{{ dias.miércoles.id }}">
+                                        {% if dias.miércoles.inscrito %}
+                                            <input type="hidden" name="cancelar" value="true">
+                                            <button type="submit" class="btn btn-sm btn-danger mt-2">Cancelar</button>
+                                        {% else %}
+                                            <button type="submit" class="btn btn-sm btn-primary mt-2">Agendar</button>
+                                        {% endif %}
+                                    </form>
+                                {% else %}
+                                    Libre
+                                {% endif %}
+                            </td>
+                
+                            <!-- Jueves -->
+                            <td>
+                                {% if dias.jueves %}
+                                    <strong>{{ dias.jueves.nombre }}</strong><br>
+                                    Entrenador: {{ dias.jueves.entrenador.primer_nombre }} {{ dias.jueves.entrenador.apellido_paterno }}<br>
+                                    Membresía: {{ dias.jueves.membresia }}<br>
+                                    Cupos: {{ dias.jueves.cupos_disponibles }}/{{ dias.jueves.cupos_maximos }}
+                                    <form method="post" action="{% url 'agendar_clase' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="clase_id" value="{{ dias.jueves.id }}">
+                                        {% if dias.jueves.inscrito %}
+                                            <input type="hidden" name="cancelar" value="true">
+                                            <button type="submit" class="btn btn-sm btn-danger mt-2">Cancelar</button>
+                                        {% else %}
+                                            <button type="submit" class="btn btn-sm btn-primary mt-2">Agendar</button>
+                                        {% endif %}
+                                    </form>
+                                {% else %}
+                                    Libre
+                                {% endif %}
+                            </td>
+                
+                            <!-- Viernes -->
+                            <td>
+                                {% if dias.viernes %}
+                                    <strong>{{ dias.viernes.nombre }}</strong><br>
+                                    Entrenador: {{ dias.viernes.entrenador.primer_nombre }} {{ dias.viernes.entrenador.apellido_paterno }}<br>
+                                    Membresía: {{ dias.viernes.membresia }}<br>
+                                    Cupos: {{ dias.viernes.cupos_disponibles }}/{{ dias.viernes.cupos_maximos }}
+                            
+                                    <form method="post" action="{% url 'agendar_clase' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="clase_id" value="{{ dias.viernes.id }}">
+                                        {% if dias.viernes.inscrito %}
+                                            <input type="hidden" name="cancelar" value="true">
+                                            <button type="submit" class="btn btn-sm btn-danger mt-2">Cancelar</button>
+                                        {% else %}
+                                            <button type="submit" class="btn btn-sm btn-primary mt-2">Agendar</button>
+                                        {% endif %}
+                                    </form>
+                                {% else %}
+                                    Libre
+                                {% endif %}
+                            </td>
+                
+                            <!-- Sábado -->
+                            <td>
+                                {% if dias.sábado %}
+                                    <strong>{{ dias.sábado.nombre }}</strong><br>
+                                    Entrenador: {{ dias.sábado.entrenador.primer_nombre }} {{ dias.sábado.entrenador.apellido_paterno }}<br>
+                                    Membresía: {{ dias.sábado.membresia }}<br>
+                                    Cupos: {{ dias.sábado.cupos_disponibles }}/{{ dias.sábado.cupos_maximos }}
+                                    <form method="post" action="{% url 'agendar_clase' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="clase_id" value="{{ dias.sábado.id }}">
+                                        {% if dias.sábado.inscrito %}
+                                            <input type="hidden" name="cancelar" value="true">
+                                            <button type="submit" class="btn btn-sm btn-danger mt-2">Cancelar</button>
+                                        {% else %}
+                                            <button type="submit" class="btn btn-sm btn-primary mt-2">Agendar</button>
+                                        {% endif %}
+                                    </form>
+                                {% else %}
+                                    Libre
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                
+            </table>
+        
+    </div>    
+        <div class="text-center mt-4">
+            <a href="{% url 'home' %}" class="btn btn-secondary">Volver al inicio</a>
+        </div>
+    </div>
+
+  <!-- Footer abajo siempre -->
+  <footer class="text-center">
+    <p>&copy; 2025 Gimnasio de Alto Rendimiento. Todos los derechos reservados.</p>
+  </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const nombre = "{{ request.session.cliente_nombre|escapejs }}";
+        if (nombre) {
+            sessionStorage.setItem("cliente_nombre", nombre);
+        }
+    </script>
+</body>
+</html>

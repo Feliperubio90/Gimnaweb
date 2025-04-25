@@ -1,0 +1,28 @@
+{% block content %}
+<h2>Lista de Entrenadores</h2>
+
+<table border="1" cellpadding="10">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Membresía</th>
+            <th>Especialidad</th>
+            <th>Cotización</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for entrenador in entrenadores %}
+        <tr>
+            <td>{{ entrenador.primer_nombre }} {{ entrenador.apellido_paterno }}</td>
+            <td>{{ entrenador.membresia }}</td>
+            <td>{{ entrenador.especialidad }}</td>
+            <td>{{ entrenador.cotizacion }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">No hay entrenadores disponibles.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
