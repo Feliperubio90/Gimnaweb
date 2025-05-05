@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+body.registro-body {
+  background-color: #00000040; /* capa negra translúcida */
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),  /* superposición negra suave */
+    url('../img/pesas.png');  /* imagen de fondo */
+  background-repeat: repeat;
+  background-size: 40px;
+  background-position: center;
+  background-blend-mode: overlay;
+  color: #000; /* Texto negro para todo el cuerpo */
+  font-family: 'Bebas Neue', sans-serif !important;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  overflow-x: hidden;
+}
+
+/* Contenedor principal centrado */
+.main-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Tarjeta del formulario */
+.registro-card {
+  background-color: #ffffff; /* Fondo blanco sólido */
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(255, 111, 0, 0.3); /* Sombra naranja */
+  width: 100%;
+  max-width: 460px;
+  z-index: 10;
+  color: #000; /* Texto negro para contraste */
+  border: 2px solid #ff6f00; /* Borde naranja */
+}
+
+/* Título */
+.registro-title {
+  font-weight: 600;
+  color: #000000; /* Naranja brillante */
+  margin-bottom: 8px;
+  text-align: center;
+  font-size: 2.5rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+/* Etiquetas */
+.form-group label {
+  font-weight: 500;
+  color: #000; /* Texto negro para las etiquetas */
+  font-size: 1rem;
+}
+
+/* Campos de entrada */
+.form-control {
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ffcc80; /* Borde de los campos */
+  background-color: #222; /* Fondo oscuro de los campos */
+  color: #000; /* Texto negro en los campos */
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #ff6f00; /* Borde naranja al hacer focus */
+  box-shadow: 0 0 0 0.2rem rgba(255, 111, 0, 0.25);
+}
+
+/* Botón de ingreso */
+.btn-registro {
+  width: 100%;
+  padding: 14px;
+  background-color: #ff6f00; /* Naranja brillante */
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-registro:hover {
+  background-color: #e65100; /* Naranja más oscuro al pasar el mouse */
+}
+
+/* Footer */
+footer {
+  background-color: #111;
+  color: white;
+  padding: 20px;
+  margin-top: auto;
+  text-align: center;
+}
+
+/* Estilos de errores */
+.error-list {
+  color: red;
+  font-size: 0.9rem;
+  list-style-type: none;
+  margin-top: 5px;
+}
+
+.error {
+  margin-bottom: 5px;
+  color: red;
+  font-weight: bold;
+}
+
+/* Botones */
+.btn-primary {
+  background-color: #FFA500 !important; /* Naranja brillante */
+  border-color: #FFA500 !important;
+}
+
+.btn-primary:hover {
+  background-color: #ff7f00 !important; /* Naranja más oscuro */
+  border-color: #ff7f00 !important;
+}
+
+.navbar .btn.btn-outline-primary {
+  color: #FFA500 !important;
+  border-color: #FFA500 !important;
+  background-color: transparent !important;
+}
+
+.navbar .btn.btn-outline-primary:hover {
+  color: #000 !important;
+  background-color: #FFA500 !important;
+  border-color: #FFA500 !important;
+}
+
+.navbar {
+  background-color: #000 !important; /* Fondo negro */
+  box-shadow: none !important; /* Elimina sombra si existe */
+}
+
+/* Aseguramos que el texto de "GimnaWeb" siempre esté en naranja */
+.navbar-brand {
+  color: #FFA500 !important; /* Naranja brillante siempre */
+}
+
+/* Cambiar el color de los enlaces en la barra de navegación al pasar el mouse */
+.navbar-nav .nav-link {
+  color: #FFA500 !important; /* Naranja brillante */
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ff7f00 !important; /* Naranja más oscuro al pasar el mouse */
+}
+
+/* Navbar enlaces */
+.navbar a {
+  color: #FFA500 !important; /* Color naranja para los enlaces */
+}
+
+.navbar a:hover {
+  color: #ff7f00 !important; /* Naranja más oscuro al pasar el mouse */
+  background-color: transparent !important; /* Elimina cualquier cambio de fondo al pasar el mouse */
+}

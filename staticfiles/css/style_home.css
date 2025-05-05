@@ -1,0 +1,40 @@
+
+        .carousel-inner, .carousel-item {
+        height: 100%; /* Ajusta este valor como quieras */
+         }
+
+        .carousel-item img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+         }
+        .carousel-caption {
+            bottom: 0;
+            top: 60%;
+            transform: translateY(-50%);
+        }
+        .weather-widget {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 15px;
+        }
+        .weather-widget .weather-info, .weather-details, .weather-icon {
+            margin-bottom: 10px;
+        }
+        .weather-temp {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .weather-desc {
+            font-size: 1.5rem;
+        }
+        
+        .carousel {
+            height: 300px;
+        }
+        .carousel-inner,
+        .carousel-item,
+        .carousel-item img {
+            height: 100%;
+        }
+        

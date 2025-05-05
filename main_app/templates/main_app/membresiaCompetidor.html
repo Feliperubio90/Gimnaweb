@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membresía Competidor</title>
+    <!-- Enlace para la fuente Bebas Neue desde Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- Para íconos -->
+</head>
+<body class="bg-light">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}">GimnaWeb</a>
+            <div class="d-flex">
+                {% if user.is_authenticated %}
+                  <span class="navbar-text me-3">
+                    Bienvenido, {{ user.first_name|default:user.username }}
+                  </span>
+                  <a class="btn btn-outline-danger" href="{% url 'logout' %}">Cerrar sesión</a>
+                {% else %}
+                  <a class="btn btn-outline-primary me-2" href="{% url 'login' %}">Iniciar Sesión</a>
+                  <a class="btn btn-outline-primary me-2" href="{% url 'register' %}">Registrarse</a>
+                {% endif %}
+              </div>
+        </div>
+    </nav>
+
+    <!-- Sección de Membresía Competidor -->
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1>Membresía Competidor</h1>
+                <p></p>
+            </div>
+        </div>          
+
+            <!-- Descipcion membresia-->
+            <div class="col-md-12 container-fluid">
+                <div class="card mb-4 shadow-lg row">
+                    <div class="card-body text-center">
+                        <h3 class="card-title"><strong>D e s c r i p c i ó n</strong></h3>
+                        <p class="card-text fs-4 text-orange">
+                            La Membresía Competidor está diseñada para quienes ya tienen experiencia en el entrenamiento físico y desean perfeccionar su técnica, aumentar fuerza y resistencia, y prepararse para desafíos reales.
+                            Incluye acceso completo a las instalaciones, clases avanzadas grupales, y seguimiento personalizado con nuestros entrenadores certificados.
+                            Ideal para quienes quieren destacar en el entrenamiento y avanzar hacia un nivel competitivo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profesores -->
+            <div class="col-md-12">
+                <div class="card mb-4 shadow-lg">
+                    <div class="card-body">
+                        <h3 class="card-title text-center">Nuestros Profesores</h3>
+                        <div class="row">
+                            <!-- Profesor Juan Pérez -->
+                            <div class="col-md-4 mb-4 d-flex">
+                                <div class="card h-100 w-100 d-flex flex-column">
+                                    <div class="d-flex justify-content-center align-items-center" style="height: 300px; overflow: hidden;">
+                                        <img src="{% static 'img/juan_perez.png' %}" class="rounded-circle" alt="Juan Pérez" style="width: 250px; height: 100%; object-fit: cover;">
+                                    </div>
+                                    <div class="card-body text-center d-flex flex-column">
+                                        <h5 class="card-title">Profe Juan Pérez</h5>
+                                        <p class="card-text">Preparación Física</p>
+                                        <p class="text-muted flex-grow-1">Especialista en acondicionamiento físico y resistencia. Su enfoque se basa en entrenamientos funcionales para mejorar el rendimiento físico general.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Profesor Camila Rojas -->
+                            <div class="col-md-4 mb-4 d-flex">
+                                <div class="card h-100 w-100 d-flex flex-column">
+                                    <div class="d-flex justify-content-center align-items-center" style="height: 300px; overflow: hidden;">
+                                        <img src="{% static 'img/camila_rojas.png' %}" class="rounded-circle" alt="Camila Rojas" style="width: 250px; height: 100%; object-fit: cover;">
+                                    </div>
+                                    <div class="card-body text-center d-flex flex-column">
+                                        <h5 class="card-title">Profe Camila Rojas</h5>
+                                        <p class="card-text">CrossFit y Resistencia</p>
+                                        <p class="text-muted flex-grow-1">Con experiencia en entrenamientos CrossFit, Camila se especializa en desarrollar fuerza y resistencia, asegurando que cada clase sea desafiante y divertida.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Profesor Esteban Torres -->
+                            <div class="col-md-4 mb-4 d-flex">
+                                <div class="card h-100 w-100 d-flex flex-column">
+                                    <div class="d-flex justify-content-center align-items-center" style="height: 300px; overflow: hidden;">
+                                        <img src="{% static 'img/esteban_torres.png' %}" class="rounded-circle" alt="Esteban Torres" style="width: 250px; height: 100%; object-fit: cover;">
+                                    </div>
+                                    <div class="card-body text-center d-flex flex-column">
+                                        <h5 class="card-title">Profe Esteban Torres</h5>
+                                        <p class="card-text">Técnica y Fuerza</p>
+                                        <p class="text-muted flex-grow-1">Esteban se enfoca en la técnica de levantamiento de pesas y entrenamiento de fuerza. Con su enfoque técnico, te ayudará a alcanzar tus metas de forma segura y efectiva.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            <!-- Información de Precio -->
+            <div class="col-md-6 mx-auto">
+                <div class="card mb-4 shadow-lg">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">P r e c i o</h3>
+                        <p class="card-text fs-4"><strong>$25,000 CLP</strong> mensual</p>
+                    </div>
+                </div>
+            </div>
+
+        <!-- Botón de Volver -->
+        <div class="text-center mt-5 mb-5">
+            <a href="{% url 'home' %}" class="btn btn-primary">← Volver al inicio</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <p>&copy; 2025 Gimnasio de Alto Rendimiento. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+/* Body y fondo */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #000; /* Fondo negro */
+    color: #fff;  /* Texto blanco */
+    font-family: 'Bebas Neue', sans-serif !important; /* Uso de !important para forzar la aplicación */
+    background-image: url('/static/img/pesas.png');
+    background-repeat: repeat; /* Hace que la imagen se repita en todo el fondo */
+    background-size: 40px; /* Ajusta el tamaño de la imagen (puedes cambiar el valor) */
+    background-position: center; /* Centra la imagen si es necesario */
+    text-shadow: none; 
+    background-blend-mode: overlay ;
+    position: relative; /* Necesario para que funcione el overlay */
+    overflow-x: hidden;  
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    flex: 1;
+}
+
+/* Carrusel */
+.carousel-inner, .carousel-item {
+    height: 100%;
+}
+
+.carousel-item img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-caption {
+    bottom: 0;
+    top: 60%;
+    transform: translateY(-50%);
+}
+
+/* Widget del clima */
+.weather-widget {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.weather-widget .weather-info, .weather-details, .weather-icon {
+    margin-bottom: 10px;
+}
+
+.weather-temp {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.weather-desc {
+    font-size: 1.5rem;
+}
+
+/* Membresías */
+.card {
+    background-color: #333; /* Fondo oscuro para las tarjetas */
+    border: 1px solid #444;
+}
+
+.card-title {
+    color: #FFA500 !important; /* Título en naranja */
+}
+
+.card-body {
+    color: #000000 !important; /* Texto blanco en las tarjetas */
+}
+
+/* Estilo para los enlaces dentro de las tarjetas (botones de 'Más Información') */
+.card a {
+    color: #fff !important; /* Texto blanco */
+    background-color: #FFA500 !important; /* Fondo naranja */
+    text-decoration: none !important; /* Elimina subrayado */
+    padding: 10px 20px; /* Añade algo de espacio alrededor del texto */
+    border-radius: 5px; /* Bordes redondeados */
+    display: inline-block; /* Hace que el enlace se comporte como un botón */
+}
+
+.card a:hover {
+    color: #fff !important; /* Mantiene el color blanco al pasar el ratón */
+    background-color: #ff7f00 !important; /* Naranja más oscuro al pasar el ratón */
+}
+
+/* Botones */
+.btn-primary {
+    background-color: #FFA500 !important; /* Naranja brillante */
+    border-color: #FFA500 !important;
+}
+
+.btn-primary:hover {
+    background-color: #ff7f00 !important; /* Naranja más oscuro */
+    border-color: #ff7f00 !important;
+}
+
+.btn-outline-primary {
+    color: #FFA500 !important;
+    border-color: #FFA500 !important;
+}
+
+.btn-outline-primary:hover {
+    color: #000 !important;
+    background-color: #FFA500 !important;
+}
+
+/* Footer */
+footer {
+    background-color: #000; /* Fondo negro */
+    color: #fff; /* Texto blanco */
+    padding: 20px;
+    margin-top: auto; /* Asegura que el footer se quede en el fondo */
+    text-align: center;
+}
+
+footer a {
+    color: #FFA500; /* Enlace en naranja */
+}
+
+footer a:hover {
+    color: #ff7f00; /* Naranja más oscuro al pasar el mouse */
+}
+
+/* Navbar */
+.navbar {
+    background-color: #000 !important; /* Fondo negro */
+    box-shadow: none !important; /* Elimina sombra si existe */
+}
+
+/* Aseguramos que el texto de "GimnaWeb" siempre esté en naranja */
+.navbar-brand {
+    color: #FFA500 !important; /* Naranja brillante siempre */
+}
+
+/* Cambiar el color de los enlaces en la barra de navegación al pasar el mouse */
+.navbar-nav .nav-link {
+    color: #FFA500 !important; /* Naranja brillante */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ff7f00 !important; /* Naranja más oscuro al pasar el mouse */
+}
+
+/* Navbar enlaces */
+.navbar a {
+    color: #FFA500 !important; /* Color naranja para los enlaces */
+}
+
+.navbar a:hover {
+    color: #ff7f00 !important; /* Naranja más oscuro al pasar el mouse */
+    background-color: transparent !important; /* Elimina cualquier cambio de fondo al pasar el mouse */
+}
+
+/* Carrusel */
+.carousel-item img {
+    object-fit: cover;
+    width: 100%;
+    height: 800px;  /* Ajusta la altura del carrusel */
+}
+
+/* Sombras y transiciones */
+.card, .btn, .navbar {
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Navbar Toggler (Icono de menú móvil) */
+.navbar-toggler {
+    border-color: transparent !important; /* Elimina el borde del icono del menú */
+}
+
+.navbar-toggler-icon {
+    background-color: #fff !important; /* Mantiene el color blanco para el icono de menú */
+}
+
+.text-orange {
+    color: #FFA500; /* Código de color naranja */
+}
+
+.clase-membresia {
+    text-shadow: none !important;  /* Elimina cualquier sombra de texto */
+    
+  }
+  
+  .clase-membresia.warning {
+    background-color: #ffc107;  /* Fondo amarillo para "Competitor" */
+    color: #212529;             /* Texto oscuro para mayor contraste */
+    letter-spacing: 0.05em;       /* espaciado entre letras*/
+  }
+  
+  .clase-membresia.info {
+    background-color: #17a2b8;  /* Fondo azul para "Proathlete" */
+    color: #ffffff;             /* Texto blanco */
+    letter-spacing: 0.05em;      /* espaciado entre letras*/
+}
+  .clase-nombre {
+  word-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+  font-size: 1rem; /* puedes ajustar según lo que quieras */
+  line-height: 1.2;
+}

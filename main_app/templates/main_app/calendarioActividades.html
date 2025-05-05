@@ -1,0 +1,151 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Talleres - Gimnasio de Alto Rendimiento</title>
+
+    <!-- Fuente -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- CSS personalizado -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style_home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style_calendario.css'%}">
+
+   
+</head>
+<body class="bg-light">
+
+ <!-- Navbar -->
+ <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'home' %}">GimnaWeb</a>
+      <div class="d-flex">
+          {% if user.is_authenticated %}
+            <span class="navbar-text me-3">
+              Bienvenido, {{ user.first_name|default:user.username }}
+            </span>
+            <a class="btn btn-outline-danger" href="{% url 'logout' %}">Cerrar sesión</a>
+          {% else %}
+            <a class="btn btn-outline-primary me-2" href="{% url 'login' %}">Iniciar Sesión</a>
+            <a class="btn btn-outline-primary me-2" href="{% url 'register' %}">Registrarse</a>
+          {% endif %}
+        </div>
+  </div>
+</nav>
+
+  <!-- Main content -->
+  <main class="container-fluid my-4 py-4">
+    <div class="card shadow-lg border-0">
+      <div class="card-header card-title bg-white py-3">
+        <h1 class="text-center mb-0 fw-bold">
+          <i class="bi bi-calendar-week me-2"></i>Calendario Semanal
+        </h1>
+        <p class="text-center text-muted mb-0 mt-2">Consulta las clases disponibles y organiza tu semana de entrenamiento</p>
+      </div>
+
+      <div class="card-body p-4">
+        <!-- Mensajes -->
+        {% if messages %}
+        <div class="messages-container mb-4">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                <i class="bi {% if message.tags == 'success' %}bi-check-circle-fill{% elif message.tags == 'error' %}bi-exclamation-triangle-fill{% else %}bi-info-circle-fill{% endif %} me-2"></i>
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        <!-- Calendario -->
+        <div class="table-responsive">
+          <table class="calendario-table table table-bordered table-hover">
+            <thead class="bg-primary text-white">
+              <tr>
+                <th class="text-start ps-4">Horario</th>
+                <th>Lunes</th>
+                <th>Martes</th>
+                <th>Miércoles</th>
+                <th>Jueves</th>
+                <th>Viernes</th>
+                <th>Sábado</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for bloque, dias in calendario.items %}
+                <tr>
+                  <td class="bg-light fw-bold text-start ps-4">{{ bloque }}</td>
+
+                  {% for dia in dias.values %}
+                    <td class="{% if not dia %}bg-light-free{% endif %}">
+                      {% if dia %}
+                        <div class="clase-card">
+                          <h3 class="clase-nombre">{{ dia.nombre }}</h3>
+                          <div class="clase-info">
+                            <span class="clase-entrenador d-block">
+                            <i class="bi bi-person-fill"></i> {{ dia.entrenador.primer_nombre }} {{ dia.entrenador.apellido_paterno }}
+                            </span>
+                            <span class="clase-membresia d-block {% if dia.membresia == 'Competitor' %}info{% else %}warning{% endif %}">
+                              {{ dia.membresia }}
+                            </span>
+                            <span class="clase-cupos d-block">
+                              <i class="bi bi-people-fill"></i> {{ dia.cupos_disponibles }}/{{ dia.cupos_maximos }}
+                            </span>
+                          </div>
+                          <form method="post" action="{% url 'agendar_clase' %}" class="mt-2">
+                            {% csrf_token %}
+                            <input type="hidden" name="clase_id" value="{{ dia.id }}">
+                            {% if dia.inscrito %}
+                              <input type="hidden" name="cancelar" value="true">
+                              <button type="submit" class="btn btn-sm btn-danger w-100">
+                                <i class="bi bi-x-circle me-1"></i> Cancelar
+                              </button>
+                            {% else %}
+                              <button type="submit" class="btn btn-sm btn-primary w-100" {% if dia.cupos_disponibles <= 0 %}disabled{% endif %}>
+                                <i class="bi bi-plus-circle me-1"></i> Agendar
+                              </button>
+                            {% endif %}
+                          </form>
+                        </div>
+                      {% else %}
+                        <div class="libre-text">
+                          <i class="bi bi-emoji-smile"></i> Libre
+                        </div>
+                      {% endif %}
+                    </td>
+                  {% endfor %}
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="text-center mt-4">
+          <a href="{% url 'home' %}" class="btn btn-outline-primary">
+            <i class="bi bi-arrow-left me-1"></i> Volver al inicio
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-3 mt-auto">
+    <div class="container text-center">
+      <p class="mb-0">&copy; 2025 Gimnasio de Alto Rendimiento. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+      const nombre = "{{ request.session.cliente_nombre|escapejs }}";
+      if (nombre) {
+          sessionStorage.setItem("cliente_nombre", nombre);
+      }
+  </script>
+</body>
+</html>
